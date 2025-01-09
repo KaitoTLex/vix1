@@ -237,7 +237,7 @@ return {
   },
   {
     "kanagawa.nvim"
-    colorscheme = { "kanagawa"},
+    colorscheme = { "kanagawa" },
   },
   {
     "pomo-nvim",
