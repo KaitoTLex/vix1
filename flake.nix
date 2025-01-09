@@ -169,7 +169,6 @@
               rustaceanvim
               crates-nvim
               haskell-tools-nvim
-              vim-wakatime
               lsp_lines-nvim
               vim-sleuth
               typescript-tools-nvim
@@ -183,10 +182,12 @@
               plenary-nvim
               obsidian-nvim
               blink-compat
+              arduino-language-server
 
               # colorschemes
               rose-pine
               oxocarbon-nvim
+              kanagawa-nvim
             ];
           };
 

@@ -15,7 +15,6 @@ return {
   require("plugins.neogit"),
   require("plugins.obsidian"),
   require("plugins.starter"),
-  { "vim-wakatime" },
   { "clangd_extensions.nvim" },
   { "vim-sleuth" },
   {
@@ -235,6 +234,10 @@ return {
   {
     "oxocarbon.nvim",
     colorscheme = { "oxocarbon" },
+  },
+  {
+    "kanagawa.nvim"
+    colorscheme = { "kanagawa"},
   },
   {
     "pomo-nvim",
