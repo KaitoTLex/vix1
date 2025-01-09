@@ -86,6 +86,7 @@
               black
               stylua
               marksman
+              arduino-language-server
 
               libnotify
             ];
@@ -182,7 +183,6 @@
               plenary-nvim
               obsidian-nvim
               blink-compat
-              arduino-language-server
 
               # colorschemes
               rose-pine
