@@ -64,11 +64,17 @@ M.setup = function()
   lspconfig.tinymist.setup({
     offset_encoding = "utf-8",
   })
+  lspconfig.tailwindcss.setup({})
   lspconfig.svelte.setup({})
   lspconfig.texlab.setup({})
   lspconfig.clangd.setup({})
   lspconfig.mesonlsp.setup({})
   lspconfig.nushell.setup({})
+  lspconfig.arduino_language_server.setup({})
+  lspconfig.clangd.setup({})
+  lspconfig.gradle_ls.setup({})
+  lspconfig.texlab.setup({})
+  lspconfig.java_language_server.setup({})
 end
 
 return M
