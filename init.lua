@@ -33,7 +33,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.opt.scrolloff = 10
 
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("rose-pine-moon")
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {},
