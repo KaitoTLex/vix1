@@ -87,7 +87,7 @@
               stylua
               marksman
               arduino-language-server
-
+              java-language-server
               libnotify
             ];
           };
