@@ -80,7 +80,6 @@
               elmPackages.elm-language-server
               arduino-language-server
               clang
-              clangd_extensions-nvim
               java-language-server
 
               # formatters
