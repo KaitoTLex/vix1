@@ -76,6 +76,12 @@
               # lsps (minimal because should be provided per-project by nix)
               nixd
               tinymist
+              elmPackages.elm
+              elmPackages.elm-language-server
+              arduino-language-server
+              clang
+              clangd_extensions-nvim
+              java-language-server
 
               # formatters
               nixfmt-rfc-style
@@ -86,8 +92,7 @@
               black
               stylua
               marksman
-              arduino-language-server
-              java-language-server
+
               libnotify
             ];
           };
@@ -183,6 +188,7 @@
               plenary-nvim
               obsidian-nvim
               blink-compat
+              nvim-java
 
               # colorschemes
               rose-pine

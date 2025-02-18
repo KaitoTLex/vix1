@@ -235,7 +235,7 @@ return {
     "oxocarbon.nvim",
     colorscheme = { "oxocarbon" },
   },
-{
+  {
     "pomo-nvim",
     cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
     after = function()
