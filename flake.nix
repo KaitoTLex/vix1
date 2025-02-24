@@ -187,7 +187,6 @@
               plenary-nvim
               obsidian-nvim
               blink-compat
-              nvim-java
 
               # colorschemes
               rose-pine

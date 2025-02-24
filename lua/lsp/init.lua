@@ -60,6 +60,12 @@ M.setup = function()
       -- },
     },
   })
+  lspconfig.elm-language-server.setup({
+      command = "elm-language-server",
+      filetypes =  ["elm"],
+      rootpatterns =["elm.json"],
+  })
+
   lspconfig.marksman.setup({})
   lspconfig.tinymist.setup({
     offset_encoding = "utf-8",
@@ -75,6 +81,7 @@ M.setup = function()
   lspconfig.gradle_ls.setup({})
   lspconfig.texlab.setup({})
   lspconfig.java_language_server.setup({})
+
 end
 
 return M
