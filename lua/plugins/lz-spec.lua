@@ -11,7 +11,7 @@ return {
   require("plugins.trouble"),
   require("plugins.render-markdown"),
   require("plugins.toggleterm"),
-  require("plugins.by-lang.latex"),
+  --require("plugins.by-lang.latex"),
   require("plugins.neogit"),
   require("plugins.obsidian"),
   require("plugins.starter"),
