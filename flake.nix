@@ -177,7 +177,7 @@
               lsp_lines-nvim
               vim-sleuth
               typescript-tools-nvim
-              texpresso-vim
+              #texpresso-vim
               blink-cmp
               clangd_extensions-nvim
               tailwind-tools-nvim
@@ -221,7 +221,7 @@
               bin = {
                 websocat = "${pkgs.websocat}/bin/websocat";
                 tinymist = "${pkgs.tinymist}/bin/tinymist";
-                texpresso = "${pkgs.texpresso}/bin/texpresso";
+                #texpresso = "${pkgs.texpresso}/bin/texpresso";
               };
               nixdExtras = {
                 nixpkgs = inputs.nixpkgs.outPath;
