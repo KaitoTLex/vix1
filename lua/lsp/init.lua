@@ -61,9 +61,8 @@ M.setup = function()
     },
   })
   lspconfig.elm-language-server.setup({
-      command = "elm-language-server",
+      -- command = "elm-language-server",
       filetypes = ["elm"],
-      rootpatterns = ["elm.json"],
   })
 
   lspconfig.marksman.setup({})
