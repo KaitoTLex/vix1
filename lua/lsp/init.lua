@@ -60,12 +60,10 @@ M.setup = function()
       -- },
     },
   })
-
   lspconfig.elmls.setup({
       -- command = "elm-language-server",
       filetype = "*.elm",
   })
-
   lspconfig.marksman.setup({})
   lspconfig.tinymist.setup({
     offset_encoding = "utf-8",
