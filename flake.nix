@@ -70,7 +70,9 @@
             general = with pkgs; [
               # essential
               ripgrep
-              python312Packages.pylatexenc
+              python313Packages.pylatexenc
+              python313Packages.pynvim
+              python313Packages.pynvim-pp
               fd
 
               # lsps (minimal because should be provided per-project by nix)
@@ -129,6 +131,7 @@
                   meson
                   nu
                   tsx
+                  vim-wakatime
                 ])
               ))
               # for some reason trigger_load still fails to load this in the

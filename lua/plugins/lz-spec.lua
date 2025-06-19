@@ -14,8 +14,11 @@ return {
   require("plugins.neogit"),
   require("plugins.obsidian"),
   require("plugins.starter"),
+  { "vim-wakatime" },
   { "clangd_extensions.nvim" },
   { "vim-sleuth" },
+  { "java-language-server" },
+  { "pyvim" },
   {
     "nvim-lspconfig",
     event = "BufEnter",

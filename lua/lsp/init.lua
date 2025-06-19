@@ -61,8 +61,8 @@ M.setup = function()
     },
   })
   lspconfig.elmls.setup({
-      -- command = "elm-language-server",
-      filetype = "*.elm",
+    -- command = "elm-language-server",
+    filetype = "*.elm",
   })
   lspconfig.marksman.setup({})
   lspconfig.tinymist.setup({
@@ -79,7 +79,7 @@ M.setup = function()
   lspconfig.gradle_ls.setup({})
   lspconfig.texlab.setup({})
   lspconfig.java_language_server.setup({})
-
+  lspconfig.pylsp.setup({})
 end
 
 return M
