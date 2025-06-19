@@ -144,10 +144,10 @@
           # plugins which are installed, but not loaded, and will be handled by
           # lz.n (not necessarily lazy loaded)
           optionalPlugins = {
-            gitPlugins = with pkgs.neovimPlugins; [
-              blink-ripgrep
-              pomo-nvim
-            ];
+            # gitPlugins = with pkgs.neovimPlugins; [
+            #   blink-ripgrep
+            #   pomo-nvim
+            # ];
             general = with pkgs.vimPlugins; [
               nvim-autopairs
               nvim-lspconfig
