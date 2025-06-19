@@ -71,7 +71,6 @@
               # essential
               ripgrep
               python313Packages.pylatexenc
-              python313Packages.pynvim
               python313Packages.pynvim-pp
               fd
 
@@ -131,7 +130,6 @@
                   meson
                   nu
                   tsx
-                  vim-wakatime
                 ])
               ))
               # for some reason trigger_load still fails to load this in the
@@ -192,6 +190,7 @@
               obsidian-nvim
               blink-compat
 
+              vim-wakatime
               # colorschemes
               rose-pine
               oxocarbon-nvim
