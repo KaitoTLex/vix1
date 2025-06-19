@@ -100,7 +100,7 @@
 
           # install lz.n and treesitter grammars
           startupPlugins = {
-            gitPlugins = with pkgs.neovimPlugins; [ ];
+            #gitPlugins = with pkgs.neovimPlugins; [ ];
             general = with pkgs.vimPlugins; [
               lz-n
               (nvim-treesitter.withPlugins (
@@ -137,6 +137,7 @@
               # for some reason trigger_load still fails to load this in the
               # proper order
               telescope-ui-select-nvim
+              telescope-fzf-native-nvim
             ];
           };
 
