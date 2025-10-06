@@ -82,6 +82,19 @@ isomorphic to ffee.
 09 F9 11 02 9D 74 E3 5B D8 41 56 C5 63 56 88 C0
 ]],
     [[
+REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                               - Ameilia Watson
+]],
+    [[
+oh, Hi!
+                                - Nanashi Mumei
+]],
+    [[
+functor.systems - developing the leading 
+technology in the g2g(goon2goon) software
+                                - Nicholas Luo
+]],
+    [[
 In the beginning, there were Real Programmers.
 
                              - Eric S. Raymond
@@ -96,6 +109,10 @@ isomorphic to itself.
 it isn't the work he is supposed to be doing at
 that moment.
                               - Robert Benchley
+]],
+    [[ 
+prompt, do not be prompted
+            - Garry Tan, good friend of Peter Thiel
 ]],
   }
 

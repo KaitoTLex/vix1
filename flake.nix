@@ -71,7 +71,8 @@
               # essential
               ripgrep
               python313Packages.pylatexenc
-              python313Packages.pynvim-pp
+              python313Packages.pynvim
+              python313
               fd
 
               # lsps (minimal because should be provided per-project by nix)
@@ -80,8 +81,9 @@
               elmPackages.elm
               elmPackages.elm-language-server
               arduino-language-server
-              clang
               java-language-server
+              metals
+              clang
 
               # formatters
               nixfmt-rfc-style
@@ -115,6 +117,7 @@
                   latex
                   nix
                   json
+                  java
                   toml
                   yaml
                   markdown
@@ -130,6 +133,9 @@
                   meson
                   nu
                   tsx
+                  scala
+                  python
+                  systemverilog
                 ])
               ))
               # for some reason trigger_load still fails to load this in the
@@ -147,6 +153,7 @@
             #   pomo-nvim
             # ];
             general = with pkgs.vimPlugins; [
+              verilog_systemverilog-vim
               nvim-autopairs
               nvim-lspconfig
               which-key-nvim
@@ -179,9 +186,8 @@
               lsp_lines-nvim
               vim-sleuth
               typescript-tools-nvim
-              #texpresso-vim
+              texpresso-vim
               blink-cmp
-              clangd_extensions-nvim
               tailwind-tools-nvim
               typst-preview-nvim
               lsp-progress-nvim
@@ -189,6 +195,11 @@
               plenary-nvim
               obsidian-nvim
               blink-compat
+              nvim-metals
+              vim-scala
+              nvim-java
+              mason-lspconfig-nvim
+              mason-nvim
 
               vim-wakatime
               # colorschemes
@@ -256,13 +267,14 @@
         devShells = {
           default = pkgs.mkShell {
             name = defaultPackageName;
-            packages =
-              [ defaultPackage ]
-              ++ (with pkgs; [
-                lua-language-server
-                nixfmt-rfc-style
-                stylua
-              ]);
+            packages = [
+              defaultPackage
+            ]
+            ++ (with pkgs; [
+              lua-language-server
+              nixfmt-rfc-style
+              stylua
+            ]);
           };
         };
 
