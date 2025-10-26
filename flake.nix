@@ -198,9 +198,7 @@
               nvim-metals
               vim-scala
               nvim-java
-              mason-lspconfig-nvim
-              mason-nvim
-
+              orgmode
               vim-wakatime
               # colorschemes
               rose-pine

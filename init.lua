@@ -40,7 +40,7 @@ require("nvim-treesitter.configs").setup({
   sync_install = false,
   auto_install = false,
   modules = { "highlight", "incremental_selection", "indent" },
-  ignore_install = {},
+  ignore_install = { "org" },
   highlight = { enable = true },
   disable = function(_, buf)
     local max_filesize = 100 * 1024 -- 100 KB

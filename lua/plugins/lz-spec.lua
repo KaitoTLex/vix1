@@ -16,7 +16,6 @@ return {
   require("plugins.starter"),
   { "vim-wakatime" },
   { "vim-sleuth" },
-  { "pyvim" },
   {
     "nvim-lspconfig",
     event = "BufEnter",
@@ -329,8 +328,14 @@ return {
     end,
   },
   {
-    "mason-org/mason.nvim",
-    opts = {},
+    "nvim-orgmode/orgmode",
+    config = function()
+      -- Setup orgmode
+      require("orgmode").setup({
+        org_default_notes_file = "~/orgfiles/main.org",
+        org_agenda_files = "~/orgfiles/agenda/*",
+      })
+    end,
   },
   -- {
   --   "Exafunction/windsurf.nvim",

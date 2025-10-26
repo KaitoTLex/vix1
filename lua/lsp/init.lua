@@ -8,9 +8,7 @@ M.setup = function()
     vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
   end
 
-  local lspconfig = require("lspconfig")
-
-  lspconfig.lua_ls.setup({
+  vim.lsp.config({
     settings = {
       Lua = {
         runtime = {
@@ -35,49 +33,27 @@ M.setup = function()
       },
     },
   })
-
-  lspconfig.nixd.setup({
-    nixd = {
-      nixpkgs = {
-        expr = [[import (builtins.getFlake ")]] .. nixCats("nixdExtras.nixpkgs") .. [[") { }   ]],
-      },
-      -- options = {
-      --   nixos = {
-      --     expr = [[(builtins.getFlake "]]
-      --       .. nixCats("nixdExtras.flake-path")
-      --       .. [[").nixosConfigurations."]]
-      --       .. nixCats("nixdExtras.systemCFGname")
-      --       .. [[".options]],
-      --   },
-      --   -- (builtins.getFlake "<path_to_system_flake>").homeConfigurations."<name>".options
-      --   ["home-manager"] = {
-      --     expr = [[(builtins.getFlake "]]
-      --       .. nixCats("nixdExtras.flake-path")
-      --       .. [[").homeConfigurations."]]
-      --       .. nixCats("nixdExtras.homeCFGname")
-      --       .. [[".options]],
-      --   },
-      -- },
-    },
+  vim.lsp.config("harper_ls", { settings = { ["harper-ls"] = { linters = { SentenceCapitalization = false } } } })
+  vim.lsp.config("tinymist", {
+    offset_encoding = "utf-8",
   })
-  lspconfig.elmls.setup({
+  vim.lsp.config({
     -- command = "elm-language-server",
     filetype = "*.elm",
   })
-  lspconfig.marksman.setup({})
-  lspconfig.tinymist.setup({
-    offset_encoding = "utf-8",
-  })
-  lspconfig.tailwindcss.setup({})
-  lspconfig.svelte.setup({})
-  lspconfig.texlab.setup({})
-  lspconfig.mesonlsp.setup({})
-  lspconfig.nushell.setup({})
-  lspconfig.arduino_language_server.setup({})
-  lspconfig.gradle_ls.setup({})
-  lspconfig.texlab.setup({})
-  lspconfig.pylsp.setup({})
-  -- lspconfig.systemverilog.setup({})
+
+  vim.lsp.enable("nixd")
+  vim.lsp.enable("marksman")
+  vim.lsp.enable("tinymist")
+  vim.lsp.enable("tailwindcss")
+  vim.lsp.enable("svelte")
+  vim.lsp.enable("texlab")
+  vim.lsp.enable("nushell")
+  vim.lsp.enable("arduino_language_server")
+  vim.lsp.enable("gradle_ls")
+  vim.lsp.enable("lua_ls")
+  vim.lsp.enable("pylsp")
+  vim.lsp.enable("systemverilog")
 end
 
 return M
