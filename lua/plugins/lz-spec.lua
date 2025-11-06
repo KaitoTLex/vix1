@@ -6,7 +6,6 @@ return {
   require("plugins.lualine"),
   require("plugins.conform"),
   -- require("plugins.lsp-progress"),
-  require("plugins.orgmode"),
   require("plugins.gitsigns"),
   require("plugins.autopairs"),
   require("plugins.trouble"),
@@ -20,7 +19,10 @@ return {
   {
     "nvim-lspconfig",
     event = "BufEnter",
-    after = require("lsp").setup,
+    -- after = require("lsp").setup,
+    after = function()
+      require("lsp").setup()
+    end,
   },
   {
     "which-key.nvim",
@@ -184,14 +186,14 @@ return {
   },
   { "rustaceanvim" },
   { "haskell-tools.nvim" },
-  {
-    "typescript-tools.nvim",
-    filetypes = { "typescriptreact", "typescript", "javascript", "svelte", "javascriptreact" },
-    after = function()
-      require("lz.n").trigger_load("nvim-lspconfig")
-      require("typescript-tools").setup({})
-    end,
-  },
+  -- {
+  --   "typescript-tools.nvim",
+  --   filetypes = { "typescriptreact", "typescript", "javascript", "svelte", "javascriptreact" },
+  --   after = function()
+  --     require("lz.n").trigger_load("nvim-lspconfig")
+  --     require("typescript-tools").setup({})
+  --   end,
+  -- },
   {
     "lsp_lines.nvim",
     event = "LspAttach",

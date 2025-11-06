@@ -36,10 +36,10 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
-  vim.lsp.config({
-    -- command = "elm-language-server",
-    -- filetype = "*.elm",
-  })
+  -- vim.lsp.config({
+  --   -- command = "elm-language-server",
+  --   -- filetype = "*.elm",
+  -- })
   vim.lsp.enable("nixd")
   vim.lsp.enable("marksman")
   vim.lsp.enable("tinymist")

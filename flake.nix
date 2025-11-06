@@ -104,6 +104,7 @@
             #gitPlugins = with pkgs.neovimPlugins; [ ];
             general = with pkgs.vimPlugins; [
               lz-n
+              orgmode
               (nvim-treesitter.withPlugins (
                 p:
                 (with p; [
@@ -198,7 +199,6 @@
               nvim-metals
               vim-scala
               nvim-java
-              orgmode
               vim-wakatime
               # colorschemes
               rose-pine
