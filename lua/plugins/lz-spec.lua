@@ -5,7 +5,8 @@ return {
   require("plugins.harpoon"),
   require("plugins.lualine"),
   require("plugins.conform"),
-  require("plugins.lsp-progress"),
+  -- require("plugins.lsp-progress"),
+  require("plugins.orgmode"),
   require("plugins.gitsigns"),
   require("plugins.autopairs"),
   require("plugins.trouble"),
@@ -202,21 +203,6 @@ return {
       })
     end,
   },
-  {
-    "tailwind-tools.nvim",
-    after = function()
-      local lz = require("lz.n")
-
-      lz.trigger_load("telescope.nvim")
-      lz.trigger_load("nvim-lspconfig")
-
-      ---@diagnostic disable-next-line: missing-fields
-      require("tailwind-tools").setup({
-        conceal = { enabled = true },
-        document_color = { enabled = true },
-      })
-    end,
-  },
   { "blink-ripgrep", lazy = true },
   { "blink.compat", lazy = true },
   {
@@ -324,16 +310,6 @@ return {
             .initialize_or_attach(opts)
         end,
         group = nvim_metals_group,
-      })
-    end,
-  },
-  {
-    "nvim-orgmode/orgmode",
-    config = function()
-      -- Setup orgmode
-      require("orgmode").setup({
-        org_default_notes_file = "~/orgfiles/main.org",
-        org_agenda_files = "~/orgfiles/agenda/*",
       })
     end,
   },

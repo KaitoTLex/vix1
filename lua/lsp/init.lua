@@ -1,14 +1,13 @@
 local M = {}
 
 M.setup = function()
-  local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
+  -- local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
 
-  for name, icon in pairs(symbols) do
-    local hl = "DiagnosticSign" .. name
-    vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
-  end
-
-  vim.lsp.config({
+  -- for name, icon in pairs(symbols) do
+  -- local hl = "DiagnosticSign" .. name
+  -- vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+  -- end
+  vim.lsp.config("lua_ls", {
     settings = {
       Lua = {
         runtime = {
@@ -39,9 +38,8 @@ M.setup = function()
   })
   vim.lsp.config({
     -- command = "elm-language-server",
-    filetype = "*.elm",
+    -- filetype = "*.elm",
   })
-
   vim.lsp.enable("nixd")
   vim.lsp.enable("marksman")
   vim.lsp.enable("tinymist")
