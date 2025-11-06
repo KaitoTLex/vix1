@@ -6,6 +6,7 @@ return {
   require("plugins.lualine"),
   require("plugins.conform"),
   -- require("plugins.lsp-progress"),
+  require("plugins.electrical"),
   require("plugins.gitsigns"),
   require("plugins.autopairs"),
   require("plugins.trouble"),
@@ -268,52 +269,6 @@ return {
         desc = "Manage Pomodori Timers",
       },
     },
-  },
-  {
-    "scalameta/nvim-metals",
-    ft = { "scala", "sbt", "java" },
-    opts = function()
-      local metals_config = require("metals").bare_config()
-      metals_config.on_attach = function(client, bufnr)
-        -- your on_attach function
-      end
-      return metals_config
-    end,
-    config = function(opts, spec)
-      local nvim_metals_group = vim.api.nvim_create_augroup("nvim_metals", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = spec.ft,
-        callback = function()
-          require("metals")
-            .setup({
-              metals_ignore_build_tools = { "sbt", "mill" },
-              metals_experimental_features = true,
-              metals_use_bloop = true,
-              metals_use_mill = false,
-              metals_use_sbt = true,
-              metals_use_coursier = true,
-              metals_use_ammonite = false,
-              metals_use_scalafix = true,
-              metals_use_scalafmt = true,
-              metals_use_scala3 = true,
-              metals_use_sbt_script = true,
-              metals_use_bloop_script = true,
-              metals_use_coursier_script = true,
-              metals_use_scala_cli = true,
-              metals_use_jdi = true,
-              metals_use_javac = true,
-              metals_use_scalac = true,
-              metals_use_scala_doc = true,
-              metals_use_scala_interactive = true,
-              metals_use_scala_library = true,
-              metals_use_scala_reflect = true,
-              metals_use_scala_compiler = true,
-            })
-            .initialize_or_attach(opts)
-        end,
-        group = nvim_metals_group,
-      })
-    end,
   },
   -- {
   --   "Exafunction/windsurf.nvim",

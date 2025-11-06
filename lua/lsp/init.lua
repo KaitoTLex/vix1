@@ -36,6 +36,7 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
+  vim.lsp.config("vhdl_ls", { on_attach = on_attach, capabilities = capabilities })
   -- vim.lsp.config({
   --   -- command = "elm-language-server",
   --   -- filetype = "*.elm",
@@ -43,6 +44,7 @@ M.setup = function()
   vim.lsp.enable("nixd")
   vim.lsp.enable("marksman")
   vim.lsp.enable("tinymist")
+  vim.lsp.enable("harper_ls")
   vim.lsp.enable("tailwindcss")
   vim.lsp.enable("svelte")
   vim.lsp.enable("texlab")
@@ -52,6 +54,7 @@ M.setup = function()
   vim.lsp.enable("lua_ls")
   vim.lsp.enable("pylsp")
   vim.lsp.enable("systemverilog")
+  vim.lsp.enable("vhdl_ls")
 end
 
 return M

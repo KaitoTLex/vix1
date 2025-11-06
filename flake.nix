@@ -83,7 +83,9 @@
               arduino-language-server
               java-language-server
               metals
+              coursier
               clang
+              vhdl-ls
 
               # formatters
               nixfmt-rfc-style
@@ -143,6 +145,7 @@
               # proper order
               telescope-ui-select-nvim
               telescope-fzf-native-nvim
+              nvim-metals
             ];
           };
 
