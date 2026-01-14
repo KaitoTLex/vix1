@@ -2,7 +2,7 @@
 
 return {
   "scalameta/nvim-metals",
-  ft = { "scala", "sbt", "java" },
+  ft = { "scala", "sbt" },
 
   after = function()
     local metals = require("metals")
@@ -41,7 +41,7 @@ return {
 
     -- trigger attach on correct filetypes
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "scala", "sbt", "java" },
+      pattern = { "scala", "sbt" },
       callback = function()
         metals.initialize_or_attach(metals_config)
       end,

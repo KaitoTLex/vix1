@@ -81,11 +81,13 @@
               elmPackages.elm
               elmPackages.elm-language-server
               arduino-language-server
-              java-language-server
               metals
               coursier
               clang
+              jdt-language-server
               vhdl-ls
+              openjdk
+              zulu
 
               # formatters
               nixfmt-rfc-style
@@ -178,6 +180,7 @@
               indent-blankline-nvim
               fidget-nvim
               mini-bufremove
+              nvim-java
               neogit
               gitsigns-nvim
               barbecue-nvim
@@ -236,7 +239,7 @@
               bin = {
                 websocat = "${pkgs.websocat}/bin/websocat";
                 tinymist = "${pkgs.tinymist}/bin/tinymist";
-                #texpresso = "${pkgs.texpresso}/bin/texpresso";
+                texpresso = "${pkgs.texpresso}/bin/texpresso";
               };
               nixdExtras = {
                 nixpkgs = inputs.nixpkgs.outPath;
