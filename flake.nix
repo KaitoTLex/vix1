@@ -73,8 +73,8 @@
               python313Packages.pylatexenc
               python313Packages.pynvim
               python313
+              tree-sitter
               fd
-
               # lsps (minimal because should be provided per-project by nix)
               nixd
               tinymist
@@ -90,7 +90,7 @@
               zulu
 
               # formatters
-              nixfmt-rfc-style
+              nixfmt
               nodePackages_latest.prettier
               taplo
               typstyle
@@ -134,7 +134,6 @@
                   bash
                   make
                   gitcommit
-                  jsonc
                   meson
                   nu
                   tsx
@@ -145,6 +144,7 @@
               ))
               # for some reason trigger_load still fails to load this in the
               # proper order
+              # nvim-treesitter-legacy-parsers.jsonc
               telescope-ui-select-nvim
               telescope-fzf-native-nvim
               nvim-metals
@@ -191,6 +191,7 @@
               crates-nvim
               haskell-tools-nvim
               lsp_lines-nvim
+              # jsonc-vim
               vim-sleuth
               typescript-tools-nvim
               texpresso-vim
@@ -244,7 +245,7 @@
               nixdExtras = {
                 nixpkgs = inputs.nixpkgs.outPath;
                 flake-path = inputs.self.outPath;
-                system = pkgs.system;
+                system = pkgs.stdenv.hostPlatform.system;
               };
             };
           };
@@ -276,7 +277,7 @@
             ]
             ++ (with pkgs; [
               lua-language-server
-              nixfmt-rfc-style
+              nixfmt
               stylua
             ]);
           };

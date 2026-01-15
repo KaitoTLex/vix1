@@ -59,7 +59,7 @@ return {
         nix = { "nixfmt" },
         haskell = { "fourmolu", "ormolu", stop_after_first = true },
         json = { "prettierd", "prettier", stop_after_first = true },
-        jsonc = { "prettierd", "prettier", stop_after_first = true },
+        -- jsonc = { "prettierd", "prettier", stop_after_first = true },
         toml = { "taplo", stop_after_first = true },
         yaml = { "prettierd", "prettier", stop_after_first = true },
         typst = { "typstyle" },
