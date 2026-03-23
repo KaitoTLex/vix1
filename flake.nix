@@ -88,6 +88,7 @@
               vhdl-ls
               openjdk
               zulu
+              # latex
 
               # formatters
               nixfmt
@@ -98,6 +99,8 @@
               black
               stylua
               marksman
+              google-java-format
+              opencode
 
               libnotify
             ];
@@ -199,6 +202,7 @@
               tailwind-tools-nvim
               typst-preview-nvim
               lsp-progress-nvim
+              texpresso-vim
               lazydev-nvim
               plenary-nvim
               obsidian-nvim
@@ -211,6 +215,7 @@
               rose-pine
               oxocarbon-nvim
               kanagawa-nvim
+              opencode-nvim
             ];
           };
 
