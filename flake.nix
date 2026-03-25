@@ -75,6 +75,8 @@
               python313
               tree-sitter
               fd
+              opencode
+
               # lsps (minimal because should be provided per-project by nix)
               nixd
               tinymist
@@ -100,7 +102,6 @@
               stylua
               marksman
               google-java-format
-              opencode
 
               libnotify
             ];

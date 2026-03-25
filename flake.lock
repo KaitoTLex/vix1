@@ -17,11 +17,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1772736753,
-        "narHash": "sha256-au/m3+EuBLoSzWUCb64a/MZq6QUtOV8oC0D9tY2scPQ=",
+        "lastModified": 1774273680,
+        "narHash": "sha256-a++tZ1RQsDb1I0NHrFwdGuRlR5TORvCEUksM459wKUA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "917fec990948658ef1ccd07cef2a1ef060786846",
+        "rev": "fdc7b8f7b30fdbedec91b71ed82f36e1637483ed",
         "type": "github"
       },
       "original": {
@@ -34,11 +34,11 @@
     "plugins-blink-ripgrep": {
       "flake": false,
       "locked": {
-        "lastModified": 1772905507,
-        "narHash": "sha256-hJEnTfvZslZkLmWdIOL86QTepkiDw9FNmjqwKxVH7oI=",
+        "lastModified": 1774243613,
+        "narHash": "sha256-SukloH3EWaU8/psYS4e+kgj/lNSGgdZoKU/9+wKoU7E=",
         "owner": "mikavilpas",
         "repo": "blink-ripgrep.nvim",
-        "rev": "ba324fd6fd5f32150fb5a6cd8a7d4669085e115b",
+        "rev": "ca9c2028cd95ac2fd2426b121816051eba0b9764",
         "type": "github"
       },
       "original": {
