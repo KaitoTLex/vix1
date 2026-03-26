@@ -1,6 +1,6 @@
 return {
   "nvim-orgmode/orgmode",
-  config = function()
+  after = function()
     local ok, orgmode = pcall(require, "orgmode")
     if not ok then
       vim.notify("orgmode failed to load", vim.log.levels.ERROR)

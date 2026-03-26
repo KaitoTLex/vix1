@@ -20,8 +20,7 @@ vim.opt.undofile = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 2
 
-vim.treesitter.indent = true
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldmethod = "expr"
 vim.opt.foldenable = false
 
@@ -35,31 +34,16 @@ vim.opt.scrolloff = 10
 
 vim.cmd.colorscheme("rose-pine-moon")
 
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {},
-  sync_install = false,
-  auto_install = false,
-  modules = { "highlight", "incremental_selection", "indent" },
-  ignore_install = {},
-  highlight = { enable = true },
-  disable = function(_, buf)
+-- nvim-treesitter 0.10+ — highlighting is automatic; disable for large files
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
     local max_filesize = 100 * 1024 -- 100 KB
     ---@diagnostic disable-next-line: undefined-field
-    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(args.buf))
     if ok and stats and stats.size > max_filesize then
-      return true
+      vim.treesitter.stop(args.buf)
     end
   end,
-  additional_vim_regex_highlighting = false,
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<CR>",
-      node_incremental = "<C-k>",
-      scope_incremental = "<BS>",
-      node_decremental = "<C-j>",
-    },
-  },
 })
 
 vim.api.nvim_create_autocmd({
