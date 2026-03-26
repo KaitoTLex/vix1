@@ -112,7 +112,6 @@
             #gitPlugins = with pkgs.neovimPlugins; [ ];
             general = with pkgs.vimPlugins; [
               lz-n
-              orgmode
               (nvim-treesitter.withPlugins (
                 p:
                 (with p; [
@@ -163,6 +162,7 @@
             #   pomo-nvim
             # ];
             general = with pkgs.vimPlugins; [
+              orgmode
               verilog_systemverilog-vim
               nvim-autopairs
               nvim-lspconfig
