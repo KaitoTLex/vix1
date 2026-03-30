@@ -71,7 +71,7 @@
               # lsps (minimal because should be provided per-project by nix, but the essentials are included).
               # The idea is that documents (Typst or markdown) and configuration files (TOML, JSON, Nix, etc) are bundled.
               # Everything else is provided per-project.
-
+              vhdl-ls # VHDL language server
               nixd # nix language server
               tinymist # Typst
               marksman # markdown

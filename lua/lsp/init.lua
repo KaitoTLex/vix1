@@ -36,7 +36,11 @@ M.setup = function()
   vim.lsp.enable("harper_ls")
   vim.lsp.enable("tinymist")
   vim.lsp.enable("lua_ls")
-
+  vim.lsp.enable("vhdl-ls")
+  vim.lsp.config("vhdl-ls", { settings = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  } })
   vim.lsp.config("harper_ls", { settings = { ["harper-ls"] = { linters = { SentenceCapitalization = false } } } })
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
