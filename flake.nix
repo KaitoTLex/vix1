@@ -21,7 +21,7 @@
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
       extra_pkg_config = {
-        # allowUnfree = true;
+        allowUnfree = true;
       };
       inherit
         (forEachSystem (
@@ -130,7 +130,6 @@
                   bash
                   make
                   gitcommit
-                  jsonc
                   meson
                   nu
                   tsx
