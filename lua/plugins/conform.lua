@@ -67,6 +67,15 @@ return {
         tex = { "latexindent" },
         cpp = { "clang-format", lsp_format = "fallback" },
         c = { "clang-format", lsp_format = "fallback" },
+        systemverilog = { "verible-verilog-format" },
+        verilog = { "verible-verilog-format" },
+      },
+      formatters = {
+        ["verible-verilog-format"] = {
+          command = "verible-verilog-format",
+          args = { "-" },
+          stdin = true,
+        },
       },
     })
 

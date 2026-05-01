@@ -88,6 +88,11 @@
 
               libnotify # required for pomo.nvim
 
+              # SystemVerilog
+              svlint # SV linter (also used by svls)
+              svls # SystemVerilog language server
+              verible # SV formatter (verible-verilog-format) and linter
+
               # ai tools
               aider-chat
             ];
@@ -129,6 +134,7 @@
                   meson
                   nu
                   tsx
+                  systemverilog
                 ])
               ))
               # for some reason trigger_load still fails to load this in the
@@ -228,6 +234,16 @@
 
               # haskell
               haskell-tools-nvim
+
+              # obsidian / notes
+              obsidian-nvim
+              mind-nvim
+
+              # SystemVerilog / Verilog
+              verilog_systemverilog-vim
+
+              # snippets
+              friendly-snippets
             ];
           };
 

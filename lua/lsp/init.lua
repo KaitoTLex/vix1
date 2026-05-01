@@ -37,6 +37,7 @@ M.setup = function()
   vim.lsp.enable("tinymist")
   vim.lsp.enable("lua_ls")
   vim.lsp.enable("vhdl-ls")
+  vim.lsp.enable("svls")
   vim.lsp.config("vhdl-ls", { settings = {
     on_attach = on_attach,
     capabilities = capabilities,

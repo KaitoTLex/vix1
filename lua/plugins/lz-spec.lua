@@ -12,9 +12,14 @@ return {
   require("plugins.render-markdown"),
   require("plugins.toggleterm"),
   require("plugins.by-lang.latex"),
+  require("plugins.by-lang.systemverilog"),
   require("plugins.neogit"),
   require("plugins.starter"),
   require("plugins.aider"),
+  require("plugins.obsidian"),
+  require("plugins.mind"),
+  require("plugins.dropbar"),
+  require("plugins.mini-files"),
   { "vim-wakatime" },
   {
     "snacks.nvim",
@@ -215,6 +220,7 @@ return {
   },
   { "blink-ripgrep.nvim", lazy = true },
   { "blink.compat", lazy = true },
+  { "friendly-snippets", lazy = true },
   {
     "lazydev.nvim",
     filetypes = { "lua" },
@@ -272,33 +278,5 @@ return {
         desc = "Manage Pomodori Timers",
       },
     },
-  },
-  {
-    "dropbar.nvim",
-    after = function()
-      local dropbar_api = require("dropbar.api")
-      vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
-      vim.keymap.set("n", "[;", dropbar_api.goto_context_start, { desc = "Go to start of current context" })
-      vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
-    end,
-  },
-  {
-    "mini.files",
-    after = function()
-      require("mini.files").setup({
-        windows = { preview = true, width_preview = 40 },
-      })
-
-      vim.keymap.set("n", "<leader>e", function()
-        if vim.bo.filetype == "ministarter" then
-          MiniFiles.open(nil, false)
-        else
-          MiniFiles.open(vim.api.nvim_buf_get_name(0))
-        end
-      end)
-      vim.keymap.set("n", "<leader>fe", function()
-        MiniFiles.open(nil, false)
-      end)
-    end,
   },
 }

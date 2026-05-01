@@ -48,6 +48,7 @@ return {
           lazydev = { module = "lazydev.integrations.blink", name = "LazyDev", score_offset = 100 },
           markdown = { module = "render-markdown.integ.blink", name = "RenderMarkdown" },
           ripgrep = { module = "blink-ripgrep", name = "Ripgrep" },
+          snippets = { opts = { friendly_snippets = true } },
         },
       },
     })
