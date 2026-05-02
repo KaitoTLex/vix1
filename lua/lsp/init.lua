@@ -36,11 +36,12 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
+  local ok, blink_cmp = pcall(require, "blink.cmp")
   vim.lsp.config("vhdl_ls", {
     capabilities = vim.tbl_deep_extend(
       "force",
       vim.lsp.protocol.make_client_capabilities(),
-      require("blink.cmp").get_lsp_capabilities and require("blink.cmp").get_lsp_capabilities() or {}
+      ok and blink_cmp.get_lsp_capabilities and blink_cmp.get_lsp_capabilities() or {}
     ),
   })
   vim.lsp.config("nvim-java", {
