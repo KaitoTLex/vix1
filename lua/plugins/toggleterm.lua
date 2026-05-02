@@ -2,92 +2,36 @@ return {
   "toggleterm.nvim",
   keys = {
     {
-      "<C-s>",
+      "<C-l>",
       function()
-        require("toggleterm.terminal").Terminal:new({ direction = "float", count = 1 }):toggle()
+        vim.cmd("ToggleTerm direction=float")
       end,
       mode = { "n", "t", "v" },
       desc = "Toggle terminal",
     },
     {
-      "<C-1>",
+      "<leader>tv",
       function()
-        require("toggleterm.terminal").Terminal:new({ direction = "float", count = 1 }):toggle()
+        vim.cmd("ToggleTerm direction=vertical")
       end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 1",
+      desc = "Vertical terminal",
+      mode = "n",
     },
     {
-      "<C-2>",
+      "<leader>tt",
       function()
-        require("toggleterm.terminal").Terminal:new({ direction = "float", count = 2 }):toggle()
+        vim.cmd("ToggleTerm direction=horizontal")
       end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 2",
+      desc = "Horizontal terminal",
+      mode = "n",
     },
     {
-      "<C-3>",
+      "<leader>ts",
       function()
-        require("toggleterm.terminal").Terminal:new({ direction = "float", count = 3 }):toggle()
+        vim.cmd("TermSelect")
       end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 3",
-    },
-    {
-      "<C-4>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "float", count = 3 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 3",
-    },
-    {
-      "<C-5>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "horizontal", count = 5 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 5",
-    },
-    {
-      "<C-6>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "horizontal", count = 6 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 6",
-    },
-    {
-      "<C-7>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "horizontal", count = 7 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 7",
-    },
-    {
-      "<C-8>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "vertical", count = 8 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 8",
-    },
-    {
-      "<C-9>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "vertical", count = 9 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 9",
-    },
-    {
-      "<C-0>",
-      function()
-        require("toggleterm.terminal").Terminal:new({ direction = "vertical", count = 10 }):toggle()
-      end,
-      mode = { "n", "t", "v" },
-      desc = "Toggle terminal 10",
+      desc = "Terminal select",
+      mode = "n",
     },
     {
       "<C-j>",
@@ -104,15 +48,7 @@ return {
           :toggle()
       end,
       mode = "n",
-      desc = "Toggle a floating terminal and run `just`",
-    },
-    {
-      "<leader>ts",
-      function()
-        vim.cmd("TermSelect")
-      end,
-      desc = "Terminal select",
-      mode = "n",
+      desc = "Toggle just runner",
     },
   },
   after = function()

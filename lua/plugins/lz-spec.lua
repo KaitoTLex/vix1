@@ -13,6 +13,7 @@ return {
   require("plugins.trouble"),
   require("plugins.render-markdown"),
   require("plugins.toggleterm"),
+  require("plugins.mini-files"),
   require("plugins.neogit"),
   require("plugins.obsidian"),
   require("plugins.slop"),

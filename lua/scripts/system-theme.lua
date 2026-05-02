@@ -5,7 +5,6 @@ M.dark = "kanagawa-wave"
 M.light = "kanagawa-lotus"
 
 local function detect()
-  -- XDG portal: 1 = dark, 2 = light, 0 = no preference
   local out = vim.fn.system(
     "dbus-send --session --print-reply=literal --dest=org.freedesktop.portal.Desktop"
       .. " /org/freedesktop/portal/desktop"
@@ -18,7 +17,6 @@ local function detect()
   if out:match("uint32 1") then
     return "dark"
   end
-  -- fallback: gsettings (GNOME)
   local gs = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
   if gs:match("prefer-light") then
     return "light"
@@ -36,29 +34,29 @@ local function apply(mode)
   end
 end
 
--- Watch dconf for live GNOME theme changes
-local function watch_dconf()
-  local path = vim.fn.expand("~/.config/dconf/user")
-  if vim.fn.filereadable(path) == 0 then
-    return
-  end
-  local watcher = vim.uv.new_fs_event()
-  if not watcher then
-    return
-  end
-  watcher:start(path, {}, function(err)
-    if err then
-      return
-    end
-    vim.schedule(function()
-      apply(detect())
-    end)
-  end)
+-- Watch XDG portal SettingChanged signal — works on Wayland (Hyprland, GNOME, etc.)
+local function watch_portal()
+  vim.fn.jobstart({
+    "dbus-monitor",
+    "--session",
+    "type='signal',interface='org.freedesktop.portal.Settings',member='SettingChanged'",
+  }, {
+    on_stdout = function(_, data)
+      for _, line in ipairs(data) do
+        if line:match("color%-scheme") then
+          vim.schedule(function()
+            apply(detect())
+          end)
+        end
+      end
+    end,
+    stdout_buffered = false,
+  })
 end
 
 M.setup = function()
   apply(detect())
-  watch_dconf()
+  watch_portal()
 end
 
 return M
