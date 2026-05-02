@@ -2,7 +2,7 @@ return {
   "blink.cmp",
   event = "BufEnter",
   after = function()
-    require("lz.n").trigger_load("blink-ripgrep.nvim")
+    require("lz.n").trigger_load("blink-ripgrep")
     require("lz.n").trigger_load("blink.compat")
     require("blink.cmp").setup({
       cmdline = { enabled = true, completion = { menu = { auto_show = true } } },
@@ -43,12 +43,37 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
         per_filetype = {
           lua = { "lazydev", "lsp", "path", "snippets", "buffer" },
+          markdown = { "lsp", "snippets", "obsidian", "obsidian_new", "obsidian_tags", "path", "buffer", "markdown" },
+          org = { "orgmode" },
         },
         providers = {
-          lazydev = { module = "lazydev.integrations.blink", name = "LazyDev", score_offset = 100 },
-          markdown = { module = "render-markdown.integ.blink", name = "RenderMarkdown" },
-          ripgrep = { module = "blink-ripgrep", name = "Ripgrep" },
-          snippets = { opts = { friendly_snippets = true } },
+          ripgrep = {
+            module = "blink-ripgrep",
+            name = "Ripgrep",
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+          markdown = { name = "RenderMarkdown", module = "render-markdown.integ.blink" },
+          obsidian = {
+            name = "obsidian",
+            module = "blink.compat.source",
+          },
+          obsidian_new = {
+            name = "obsidian_new",
+            module = "blink.compat.source",
+          },
+          obsidian_tags = {
+            name = "obsidian_tags",
+            module = "blink.compat.source",
+          },
+          orgmode = {
+            name = "orgmode",
+            module = "orgmode.org.autocompletion.blink",
+            fallbacks = { "buffer" },
+          },
         },
       },
     })

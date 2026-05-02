@@ -6,33 +6,25 @@ return {
   require("plugins.lualine"),
   require("plugins.conform"),
   require("plugins.lsp-progress"),
+  require("plugins.by-lang.latex"),
+  require("plugins.electrical"),
   require("plugins.gitsigns"),
   require("plugins.autopairs"),
   require("plugins.trouble"),
   require("plugins.render-markdown"),
   require("plugins.toggleterm"),
-  require("plugins.by-lang.latex"),
-  require("plugins.by-lang.systemverilog"),
   require("plugins.neogit"),
-  require("plugins.starter"),
-  require("plugins.aider"),
   require("plugins.obsidian"),
-  require("plugins.mind"),
-  require("plugins.dropbar"),
-  require("plugins.mini-files"),
+  require("plugins.slop"),
+  require("plugins.starter"),
   { "vim-wakatime" },
-  {
-    "snacks.nvim",
-    after = function()
-      require("snacks").setup()
-    end,
-  },
-  { "clangd_extensions.nvim" },
   { "vim-sleuth" },
   {
     "nvim-lspconfig",
     event = "BufEnter",
-    after = require("lsp").setup,
+    after = function()
+      require("lsp").setup()
+    end,
   },
   {
     "which-key.nvim",
@@ -132,27 +124,6 @@ return {
     end,
   },
   {
-    "nvim-spectre",
-    cmd = { "Spectre" },
-    keys = {
-      {
-        "<leader>s",
-        function()
-          require("spectre").open()
-        end,
-      },
-    },
-    after = function()
-      require("spectre").setup({
-        default = {
-          replace = {
-            cmd = "oxi",
-          },
-        },
-      })
-    end,
-  },
-  {
     "mini.bufremove",
     keys = {
       {
@@ -173,6 +144,13 @@ return {
     event = "BufEnter",
     after = function()
       require("mini.hipatterns").setup()
+    end,
+  },
+  {
+    "barbecue.nvim",
+    event = "BufEnter",
+    after = function()
+      require("barbecue").setup()
     end,
   },
   {
@@ -210,17 +188,27 @@ return {
   },
   { "rustaceanvim" },
   { "haskell-tools.nvim" },
+  -- {
+  --   "typescript-tools.nvim",
+  --   filetypes = { "typescriptreact", "typescript", "javascript", "svelte", "javascriptreact" },
+  --   after = function()
+  --     require("lz.n").trigger_load("nvim-lspconfig")
+  --     require("typescript-tools").setup({})
+  --   end,
+  -- },
   {
-    "typescript-tools.nvim",
-    filetypes = { "typescriptreact", "typescript", "javascript", "svelte", "javascriptreact" },
+    "lsp_lines.nvim",
+    event = "LspAttach",
     after = function()
-      require("lz.n").trigger_load("nvim-lspconfig")
-      require("typescript-tools").setup({})
+      require("lsp_lines").setup()
+      vim.diagnostic.config({
+        virtual_text = false,
+        virtual_lines = { only_current_line = true },
+      })
     end,
   },
-  { "blink-ripgrep.nvim", lazy = true },
+  { "blink-ripgrep", lazy = true },
   { "blink.compat", lazy = true },
-  { "friendly-snippets", lazy = true },
   {
     "lazydev.nvim",
     filetypes = { "lua" },
@@ -237,7 +225,15 @@ return {
     colorscheme = { "oxocarbon" },
   },
   {
-    "pomo-nvim.nvim",
+    "kanagawa.nvim",
+    colorscheme = { "kanagawa", "kanagawa-wave", "kanagawa-dragon", "kanagawa-lotus" },
+  },
+  --   { "verilog_systemverilog.vim"
+  -- let g:verilog_syntax_fold_lst = "all"
+  -- set foldmethod=syntax
+  --   },
+  {
+    "pomo-nvim",
     cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
     after = function()
       ---@diagnostic disable-next-line: missing-fields
@@ -279,4 +275,14 @@ return {
       },
     },
   },
+  -- {
+  --   "Exafunction/windsurf.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({})
+  --   end,
+  -- },
 }
