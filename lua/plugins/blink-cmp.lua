@@ -44,7 +44,10 @@ return {
         per_filetype = {
           lua = { "lazydev", "lsp", "path", "snippets", "buffer" },
           markdown = { "lsp", "snippets", "obsidian", "obsidian_new", "obsidian_tags", "path", "buffer", "markdown" },
-          org = { "orgmode" },
+          vhdl = { "lsp", "snippets", "buffer", "path" },
+          systemverilog = { "lsp", "snippets", "buffer", "path" },
+          verilog = { "lsp", "snippets", "buffer", "path" },
+          -- org = { "orgmode" },
         },
         providers = {
           ripgrep = {
@@ -69,11 +72,11 @@ return {
             name = "obsidian_tags",
             module = "blink.compat.source",
           },
-          orgmode = {
-            name = "orgmode",
-            module = "orgmode.org.autocompletion.blink",
-            fallbacks = { "buffer" },
-          },
+          -- orgmode = {
+          --   name = "orgmode",
+          --   module = "orgmode.org.autocompletion.blink",
+          --   fallbacks = { "buffer" },
+          -- },
         },
       },
     })

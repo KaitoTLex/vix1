@@ -36,7 +36,13 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
-  vim.lsp.config("vhdl_ls", { on_attach = on_attach, capabilities = capabilities })
+  vim.lsp.config("vhdl_ls", {
+    capabilities = vim.tbl_deep_extend(
+      "force",
+      vim.lsp.protocol.make_client_capabilities(),
+      require("blink.cmp").get_lsp_capabilities and require("blink.cmp").get_lsp_capabilities() or {}
+    ),
+  })
   vim.lsp.config("nvim-java", {
     checks = {
       nvim_version = true,
@@ -87,7 +93,7 @@ M.setup = function()
   vim.lsp.enable("gradle_ls")
   vim.lsp.enable("lua_ls")
   vim.lsp.enable("pylsp")
-  vim.lsp.enable("systemverilog")
+  vim.lsp.enable("svls")
   vim.lsp.enable("vhdl_ls")
 end
 

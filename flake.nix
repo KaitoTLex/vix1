@@ -88,6 +88,8 @@
               clang
               jdt-language-server
               vhdl-ls
+              svls
+
               openjdk
               zulu
               # latex
@@ -161,7 +163,7 @@
             #   pomo-nvim
             # ];
             general = with pkgs.vimPlugins; [
-              orgmode
+              # orgmode
               verilog_systemverilog-vim
               nvim-autopairs
               nvim-lspconfig

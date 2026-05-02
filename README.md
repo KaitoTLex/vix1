@@ -69,6 +69,116 @@ The keybinds have gotten a lot more idiosyncratic. Instead of focusing on
 mnemonic keys that can be easily committed to memory, highly efficient ones
 were chosen instead.
 
+## Keybindings
+
+> `<leader>` is `<Space>`. Chord keys (e.g. `<C-h><C-a>`) are pressed sequentially.
+
+### File Explorer (mini.files)
+
+| Key | Action |
+|-----|--------|
+| `<C-e>` | Toggle file explorer at current file |
+| `<leader>fe` | Open file explorer at cwd |
+| `l` | Navigate into directory / open file |
+| `h` | Go to parent directory |
+| `<CR>` | Apply filesystem changes (rename, delete, etc.) |
+| `<Esc>` / `q` | Close file explorer |
+
+### File Explorer (oil.nvim)
+
+| Key | Action |
+|-----|--------|
+| `<leader>bf` | Open oil at cwd |
+| `<leader>be` | Open oil at current file's directory |
+| `<C-h>` | Open in horizontal split |
+| `<C-s>` | Open in vertical split |
+| `<C-t>` | Open in new tab |
+| `<C-p>` | Toggle preview |
+
+### Search / Find (Telescope)
+
+| Key | Action |
+|-----|--------|
+| `<leader><Space>` | Find files (git-tracked or cwd fallback) |
+| `<leader>ff` | Find all files in cwd |
+| `<leader>/` | Live grep |
+| `<leader>k` | List open buffers |
+| `<leader>j` | Search document symbols |
+| `<leader>fs` | Search workspace symbols |
+| `<leader>fd` | Search LSP diagnostics |
+| `gd` | Go to LSP definition |
+| `gi` | Go to implementations |
+| `<leader>ca` | LSP code action |
+
+### Marks / Quick Navigation (Harpoon)
+
+| Key | Action |
+|-----|--------|
+| `<leader>a` | Add current file to harpoon |
+| `<C-h><C-h>` | Open harpoon menu (telescope) |
+| `<C-h><C-a>` | Jump to harpoon slot 1 |
+| `<C-h><C-s>` | Jump to harpoon slot 2 |
+| `<C-h><C-d>` | Jump to harpoon slot 3 |
+| `<C-h><C-f>` | Jump to harpoon slot 4 |
+
+### Terminal (toggleterm.nvim)
+
+| Key | Action |
+|-----|--------|
+| `<C-l>` | Toggle floating terminal |
+| `<leader>tv` | Open vertical terminal |
+| `<leader>tt` | Open horizontal terminal |
+| `<leader>ts` | Terminal select |
+| `<C-j>` | Toggle `just` runner |
+
+### Git (Gitsigns + Neogit)
+
+| Key | Action |
+|-----|--------|
+| `<leader>gg` | Open Neogit |
+| `<leader>gc` | Open Neogit commit menu |
+| `<leader>gs` | Stage hunk |
+| `<leader>gr` | Reset hunk |
+| `<leader>gS` | Stage buffer |
+| `<leader>gu` | Undo stage hunk |
+| `<leader>gR` | Reset buffer |
+| `<leader>gp` | Preview hunk |
+| `<leader>gb` | Toggle line blame |
+| `<leader>gd` | Diff this |
+| `<leader>gD` | Diff vs HEAD~ |
+| `<leader>gtd` | Toggle show deleted |
+
+### Diagnostics (Trouble)
+
+| Key | Action |
+|-----|--------|
+| `<leader>xx` | Workspace diagnostics |
+| `<leader>xX` | Buffer diagnostics |
+| `<leader>cs` | Symbols panel |
+| `<leader>cl` | LSP definitions / references |
+| `<leader>ql` | Quickfix list |
+
+### Formatting (conform.nvim)
+
+| Key | Action |
+|-----|--------|
+| `<leader>cf` | Format current buffer |
+| `<leader>ctf` | Toggle autoformat on save (global) |
+| `<leader>cbf` | Toggle autoformat on save (buffer) |
+
+### Splits / Panes (Neovim built-in)
+
+| Key | Action |
+|-----|--------|
+| `<C-w>v` | Vertical split |
+| `<C-w>s` | Horizontal split |
+| `<C-w>h` | Focus left split |
+| `<C-w>j` | Focus lower split |
+| `<C-w>k` | Focus upper split |
+| `<C-w>l` | Focus right split |
+| `<C-w>c` | Close split |
+| `<C-w>=` | Equalize split sizes |
+
 ## Todo
 
 - Try rewriting config in Fennel.
