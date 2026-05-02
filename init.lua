@@ -32,7 +32,7 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.opt.scrolloff = 10
 
-vim.cmd.colorscheme("kanagawa")
+require("scripts.system-theme").setup()
 
 -- nvim-treesitter 0.10+ — highlighting is automatic; disable for large files
 vim.api.nvim_create_autocmd("FileType", {

@@ -27,7 +27,7 @@
       luaPath = "${./.}";
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
       extra_pkg_config = {
-        # allowUnfree = true;
+        allowUnfree = true;
       };
       inherit
         (forEachSystem (
@@ -94,7 +94,7 @@
 
               # formatters
               nixfmt
-              nodePackages_latest.prettier
+              prettier
               taplo
               typstyle
               rustfmt
