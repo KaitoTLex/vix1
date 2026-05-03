@@ -89,6 +89,8 @@
               jdt-language-server
               vhdl-ls
               svls
+              verible
+              iverilog
 
               openjdk
               zulu

@@ -37,11 +37,19 @@ M.setup = function()
     offset_encoding = "utf-8",
   })
   local ok, blink_cmp = pcall(require, "blink.cmp")
+  local blink_caps = ok and blink_cmp.get_lsp_capabilities and blink_cmp.get_lsp_capabilities() or {}
   vim.lsp.config("vhdl_ls", {
     capabilities = vim.tbl_deep_extend(
       "force",
       vim.lsp.protocol.make_client_capabilities(),
-      ok and blink_cmp.get_lsp_capabilities and blink_cmp.get_lsp_capabilities() or {}
+      blink_caps
+    ),
+  })
+  vim.lsp.config("svls", {
+    capabilities = vim.tbl_deep_extend(
+      "force",
+      vim.lsp.protocol.make_client_capabilities(),
+      blink_caps
     ),
   })
   vim.lsp.config("nvim-java", {

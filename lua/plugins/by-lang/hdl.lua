@@ -12,6 +12,10 @@ return {
         vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
       end
 
+      -- iverilog linting via :make → populates quickfix for :VerilogErrorJump
+      vim.opt_local.makeprg = "iverilog -t null -Wall -g2012 %"
+      vim.opt_local.errorformat = "%E%f:%l: error: %m,%W%f:%l: warning: %m,%-C%.%#,%-Z%.%#"
+
       -- verilog_systemverilog.vim navigation
       map("n", "<leader>hf", ":VerilogFollowInstance<CR>", "Follow instance to module")
       map("n", "<leader>hF", ":VerilogFollowPort<CR>", "Follow port")

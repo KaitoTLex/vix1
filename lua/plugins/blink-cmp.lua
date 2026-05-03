@@ -50,6 +50,20 @@ return {
           -- org = { "orgmode" },
         },
         providers = {
+          snippets = {
+            opts = {
+              friendly_snippets = false,
+              search_paths = (function()
+                local paths = {}
+                for _, p in ipairs(vim.api.nvim_list_runtime_paths()) do
+                  if vim.fn.isdirectory(p .. "/snippets") == 1 then
+                    table.insert(paths, p .. "/snippets")
+                  end
+                end
+                return paths
+              end)(),
+            },
+          },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
