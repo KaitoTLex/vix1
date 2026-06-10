@@ -92,7 +92,6 @@
               verible
               iverilog
 
-              openjdk
               zulu
               # latex
 
@@ -201,7 +200,6 @@
               lsp_lines-nvim
               vim-sleuth
               typescript-tools-nvim
-              texpresso-vim
               blink-cmp
               tailwind-tools-nvim
               typst-preview-nvim
@@ -247,7 +245,6 @@
               bin = {
                 websocat = "${pkgs.websocat}/bin/websocat";
                 tinymist = "${pkgs.tinymist}/bin/tinymist";
-                texpresso = "${pkgs.texpresso}/bin/texpresso";
               };
               nixdExtras = {
                 nixpkgs = inputs.nixpkgs.outPath;

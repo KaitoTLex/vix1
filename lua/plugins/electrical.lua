@@ -37,6 +37,11 @@ return {
     metals_config.settings = {
       showImplicitArguments = true,
       showInferredType = true,
+      -- Without this, Metals' "import build?" prompt rides on
+      -- window/showMessageRequest, which nvim doesn't surface
+      -- interactively, so it comes back as "Dismissed" and the
+      -- build (and any deps like chisel) never gets imported.
+      automaticImportBuild = "all",
     }
 
     -- trigger attach on correct filetypes

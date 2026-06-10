@@ -6,7 +6,6 @@ return {
   require("plugins.lualine"),
   require("plugins.conform"),
   require("plugins.lsp-progress"),
-  require("plugins.by-lang.latex"),
   require("plugins.by-lang.hdl"),
   require("plugins.electrical"),
   require("plugins.gitsigns"),
