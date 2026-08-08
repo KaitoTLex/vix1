@@ -83,14 +83,26 @@
               elmPackages.elm
               elmPackages.elm-language-server
               arduino-language-server
+              harper
+              lua-language-server
               metals
               coursier
               clang
               jdt-language-server
+              (julia.withPackages [
+                "LanguageServer"
+                "StaticLint"
+                "SymbolServer"
+              ])
               vhdl-ls
               svls
+              svelte-language-server
+              tailwindcss-language-server
+              texlab
               verible
               iverilog
+              nushell
+              python313Packages.python-lsp-server
 
               zulu
               # latex
@@ -145,6 +157,7 @@
                   tsx
                   scala
                   python
+                  julia
                   systemverilog
                 ])
               ))

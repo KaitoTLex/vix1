@@ -16,6 +16,7 @@ return {
           window = { border = "rounded" },
         },
         menu = {
+          auto_show = true,
           border = "rounded",
           draw = {
             columns = { { "kind_icon", "kind" }, { "label", "label_description", gap = 2 } },
@@ -47,6 +48,7 @@ return {
           vhdl = { "lsp", "snippets", "buffer", "path" },
           systemverilog = { "lsp", "snippets", "buffer", "path" },
           verilog = { "lsp", "snippets", "buffer", "path" },
+          julia = { "lsp", "snippets", "buffer", "path" },
           -- org = { "orgmode" },
         },
         providers = {

@@ -7,6 +7,8 @@ M.setup = function()
   -- local hl = "DiagnosticSign" .. name
   -- vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
   -- end
+  local capabilities = require("blink.cmp").get_lsp_capabilities()
+  vim.lsp.config("*", { capabilities = capabilities })
   vim.lsp.config("lua_ls", {
     settings = {
       Lua = {
@@ -36,23 +38,8 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
-  local ok, blink_cmp = pcall(require, "blink.cmp")
-  local blink_caps = ok and blink_cmp.get_lsp_capabilities and blink_cmp.get_lsp_capabilities() or {}
-  vim.lsp.config("vhdl_ls", {
-    capabilities = vim.tbl_deep_extend(
-      "force",
-      vim.lsp.protocol.make_client_capabilities(),
-      blink_caps
-    ),
-  })
-  vim.lsp.config("svls", {
-    capabilities = vim.tbl_deep_extend(
-      "force",
-      vim.lsp.protocol.make_client_capabilities(),
-      blink_caps
-    ),
-  })
-  vim.lsp.config("nvim-java", {
+  require("lz.n").trigger_load("nvim-java")
+  require("java").setup({
     checks = {
       nvim_version = true,
       nvim_jdtls_conflict = true,
@@ -99,9 +86,9 @@ M.setup = function()
   vim.lsp.enable("texlab")
   vim.lsp.enable("nushell")
   vim.lsp.enable("arduino_language_server")
-  vim.lsp.enable("gradle_ls")
   vim.lsp.enable("lua_ls")
   vim.lsp.enable("pylsp")
+  vim.lsp.enable("julials")
   vim.lsp.enable("svls")
   vim.lsp.enable("vhdl_ls")
 end
