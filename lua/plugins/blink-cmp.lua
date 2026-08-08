@@ -30,7 +30,7 @@ return {
       keymap = {
         ["<C-g>"] = {
           function()
-            require("blink-cmp").show({ providers = { "ripgrep" } })
+            require("blink.cmp").show({ providers = { "ripgrep" } })
           end,
         },
         ["<C-j>"] = { "snippet_backward", "fallback" },

@@ -24,6 +24,7 @@ return {
     "nvim-lspconfig",
     event = "BufEnter",
     after = function()
+      require("lz.n").trigger_load("blink.cmp")
       require("lsp").setup()
     end,
   },
