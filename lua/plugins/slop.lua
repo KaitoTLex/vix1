@@ -1,6 +1,7 @@
 return {
   "opencode.nvim",
   after = function()
+    require("lz.n").trigger_load("toggleterm.nvim")
     local opencode_terminal = require("toggleterm.terminal").Terminal:new({
       cmd = "opencode --port",
       count = 101,
