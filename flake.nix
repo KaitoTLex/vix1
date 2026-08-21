@@ -85,6 +85,7 @@
               arduino-language-server
               harper
               lua-language-server
+              lean4
               metals
               coursier
               clang
