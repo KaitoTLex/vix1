@@ -44,6 +44,7 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
         per_filetype = {
           lua = { "lazydev", "lsp", "path", "snippets", "buffer" },
+          lean = { "lsp", "snippets", "buffer", "path" },
           markdown = { "lsp", "snippets", "obsidian", "obsidian_new", "obsidian_tags", "path", "buffer", "markdown" },
           vhdl = { "lsp", "snippets", "buffer", "path" },
           systemverilog = { "lsp", "snippets", "buffer", "path" },
