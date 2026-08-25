@@ -7,6 +7,20 @@ M.setup = function()
   -- local hl = "DiagnosticSign" .. name
   -- vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
   -- end
+  vim.lsp.config("*", {
+    capabilities = {
+      workspace = {
+        fileOperations = {
+          willRename = false,
+          didRename = false,
+          willCreate = false,
+          didCreate = false,
+          willDelete = false,
+          didDelete = false,
+        },
+      },
+    },
+  })
   vim.lsp.config("lua_ls", {
     settings = {
       Lua = {
