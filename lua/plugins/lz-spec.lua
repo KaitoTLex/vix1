@@ -21,9 +21,28 @@ return {
   { "vim-wakatime" },
   { "vim-sleuth" },
   {
+    "nvim-java",
+    ft = "java",
+    after = function()
+      local jdtls_root = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.exepath("jdtls")), ":h:h") .. "/share/java/jdtls"
+      local jdk_root = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.exepath("java")), ":h:h")
+
+      require("java").setup({
+        jdtls = { path = jdtls_root, auto_install = false },
+        lombok = { enable = false },
+        java_test = { enable = false },
+        java_debug_adapter = { enable = false },
+        spring_boot_tools = { enable = false },
+        jdk = { path = jdk_root, auto_install = false },
+      })
+      vim.lsp.enable("jdtls")
+    end,
+  },
+  {
     "nvim-lspconfig",
     event = "BufEnter",
     after = function()
+      require("lz.n").trigger_load("blink.cmp")
       require("lsp").setup()
     end,
   },

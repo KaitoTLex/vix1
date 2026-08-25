@@ -17,11 +17,19 @@
     },
     "nixpkgs": {
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1782175435,
         "narHash": "sha256-EMzXKmnOtBQ2MnvpiNOm7E+kOMvdPrIKaeg52Tip2Uk=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "89570f24e97e614aa34aa9ab1c927b6578a43775",
+=======
+        "lastModified": 1785975029,
+        "narHash": "sha256-X44cn5rzytELc3NNoQsh0aLkjWA/QzPfc6HPQmsG3sU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "70ce234312134a463ba7728e94da2486a1d237ac",
+>>>>>>> 2e5f71052133927bd068d06144cedf3075a31e97
         "type": "github"
       },
       "original": {
@@ -34,11 +42,19 @@
     "plugins-blink-ripgrep": {
       "flake": false,
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1782265248,
         "narHash": "sha256-7tbhs0zIxvxBYSVrTaenAqqqAoqZw8CWnNT85OxtyVE=",
         "owner": "mikavilpas",
         "repo": "blink-ripgrep.nvim",
         "rev": "5ce0e95306f65a1b806dcb1e8b090998f174d5e0",
+=======
+        "lastModified": 1786154518,
+        "narHash": "sha256-fyfBAmqLaiIRjcVQtGGxcnc4lTyd83+SKH+syAZoNn4=",
+        "owner": "mikavilpas",
+        "repo": "blink-ripgrep.nvim",
+        "rev": "9dac80da0b15582c5d7f13386d3ac175b43ceea1",
+>>>>>>> 2e5f71052133927bd068d06144cedf3075a31e97
         "type": "github"
       },
       "original": {

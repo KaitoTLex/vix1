@@ -7,6 +7,7 @@ M.setup = function()
   -- local hl = "DiagnosticSign" .. name
   -- vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
   -- end
+<<<<<<< HEAD
   vim.lsp.config("*", {
     capabilities = {
       workspace = {
@@ -21,6 +22,10 @@ M.setup = function()
       },
     },
   })
+=======
+  local capabilities = require("blink.cmp").get_lsp_capabilities()
+  vim.lsp.config("*", { capabilities = capabilities })
+>>>>>>> 2e5f71052133927bd068d06144cedf3075a31e97
   vim.lsp.config("lua_ls", {
     settings = {
       Lua = {
@@ -50,61 +55,7 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
-  local ok, blink_cmp = pcall(require, "blink.cmp")
-  local blink_caps = ok and blink_cmp.get_lsp_capabilities and blink_cmp.get_lsp_capabilities() or {}
-  vim.lsp.config("vhdl_ls", {
-    capabilities = vim.tbl_deep_extend(
-      "force",
-      vim.lsp.protocol.make_client_capabilities(),
-      blink_caps
-    ),
-  })
-  vim.lsp.config("svls", {
-    capabilities = vim.tbl_deep_extend(
-      "force",
-      vim.lsp.protocol.make_client_capabilities(),
-      blink_caps
-    ),
-  })
-  vim.lsp.config("nvim-java", {
-    checks = {
-      nvim_version = true,
-      nvim_jdtls_conflict = true,
-    },
-    jdtls = {
-      version = "1.43.0",
-    },
-    lombok = {
-      enable = true,
-      version = "1.18.40",
-    },
-    java_test = {
-      enable = true,
-      version = "0.40.1",
-    },
-    java_debug_adapter = {
-      enable = true,
-      version = "0.58.2",
-    },
-    spring_boot_tools = {
-      enable = true,
-      version = "1.55.1",
-    },
-    jdk = {
-      auto_install = true,
-      version = "17",
-    },
-    log = {
-      use_console = true,
-      use_file = true,
-      level = "info",
-      log_file = vim.fn.stdpath("state") .. "/nvim-java.log",
-      max_lines = 1000,
-      show_location = false,
-    },
-  })
   vim.lsp.enable("nixd")
-  vim.lsp.enable("jdtls")
   vim.lsp.enable("marksman")
   vim.lsp.enable("tinymist")
   vim.lsp.enable("harper_ls")
@@ -113,9 +64,10 @@ M.setup = function()
   vim.lsp.enable("texlab")
   vim.lsp.enable("nushell")
   vim.lsp.enable("arduino_language_server")
-  vim.lsp.enable("gradle_ls")
   vim.lsp.enable("lua_ls")
+  vim.lsp.enable("leanls")
   vim.lsp.enable("pylsp")
+  vim.lsp.enable("julials")
   vim.lsp.enable("svls")
   vim.lsp.enable("vhdl_ls")
 end

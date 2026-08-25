@@ -16,6 +16,7 @@ return {
           window = { border = "rounded" },
         },
         menu = {
+          auto_show = true,
           border = "rounded",
           draw = {
             columns = { { "kind_icon", "kind" }, { "label", "label_description", gap = 2 } },
@@ -29,7 +30,7 @@ return {
       keymap = {
         ["<C-g>"] = {
           function()
-            require("blink-cmp").show({ providers = { "ripgrep" } })
+            require("blink.cmp").show({ providers = { "ripgrep" } })
           end,
         },
         ["<C-j>"] = { "snippet_backward", "fallback" },
@@ -43,10 +44,12 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
         per_filetype = {
           lua = { "lazydev", "lsp", "path", "snippets", "buffer" },
+          lean = { "lsp", "snippets", "buffer", "path" },
           markdown = { "lsp", "snippets", "obsidian", "obsidian_new", "obsidian_tags", "path", "buffer", "markdown" },
           vhdl = { "lsp", "snippets", "buffer", "path" },
           systemverilog = { "lsp", "snippets", "buffer", "path" },
           verilog = { "lsp", "snippets", "buffer", "path" },
+          julia = { "lsp", "snippets", "buffer", "path" },
           -- org = { "orgmode" },
         },
         providers = {

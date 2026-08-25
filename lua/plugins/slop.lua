@@ -1,10 +1,20 @@
 return {
   "opencode.nvim",
   after = function()
+    require("lz.n").trigger_load("toggleterm.nvim")
+    local opencode_terminal = require("toggleterm.terminal").Terminal:new({
+      cmd = "opencode --port",
+      count = 101,
+      direction = "float",
+      display_name = "opencode",
+      hidden = true,
+    })
+
     ---@type opencode.Opts
-    vim.g.opencode_opts = {
-      -- Your configuration, if any; goto definition on the type or field for details
-    }
+    local opts = require("opencode.config").opts
+    opts.server.start = function()
+      opencode_terminal:open()
+    end
 
     vim.o.autoread = true -- Required for `opts.events.reload`
 
@@ -16,7 +26,7 @@ return {
       require("opencode").select()
     end, { desc = "Execute opencode action…" })
     vim.keymap.set({ "n", "t" }, "<Leader>slop", function()
-      require("opencode").toggle()
+      opencode_terminal:toggle()
     end, { desc = "Toggle opencode" })
 
     vim.keymap.set({ "n", "x" }, "go", function()
