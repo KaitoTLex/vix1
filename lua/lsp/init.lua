@@ -7,25 +7,19 @@ M.setup = function()
   -- local hl = "DiagnosticSign" .. name
   -- vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
   -- end
-<<<<<<< HEAD
-  vim.lsp.config("*", {
-    capabilities = {
-      workspace = {
-        fileOperations = {
-          willRename = false,
-          didRename = false,
-          willCreate = false,
-          didCreate = false,
-          willDelete = false,
-          didDelete = false,
-        },
+  local capabilities = require("blink.cmp").get_lsp_capabilities({
+    workspace = {
+      fileOperations = {
+        willRename = false,
+        didRename = false,
+        willCreate = false,
+        didCreate = false,
+        willDelete = false,
+        didDelete = false,
       },
     },
   })
-=======
-  local capabilities = require("blink.cmp").get_lsp_capabilities()
   vim.lsp.config("*", { capabilities = capabilities })
->>>>>>> 2e5f71052133927bd068d06144cedf3075a31e97
   vim.lsp.config("lua_ls", {
     settings = {
       Lua = {
