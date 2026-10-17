@@ -51,6 +51,10 @@ return {
         metals.initialize_or_attach(metals_config)
       end,
     })
+    -- the buffer that triggered loading already had its FileType event
+    if vim.tbl_contains({ "scala", "sbt" }, vim.bo.filetype) then
+      metals.initialize_or_attach(metals_config)
+    end
 
     -- Chisel workflow
     vim.api.nvim_create_user_command("SbtTest", function()

@@ -32,6 +32,26 @@ the Nix package manager available (with flakes).
 nix run 'github:youwen5/viminal2'
 ```
 
+To build and run this checkout (including new, untracked Lua files):
+
+```bash
+nix build path:.#nvim
+./result/bin/nvim
+```
+
+To open a new **fullscreen Kitty window**, use `nix run path:.#fullscreen`.
+File arguments are supported: `nix run path:.#fullscreen -- ./flake.nix`.
+This launcher requests fullscreen only for its own window; starting `nvim` inside
+an existing terminal does not change that terminal's window-manager state.
+
+Run the real-terminal regression suite after building:
+
+```bash
+python3 tests/terminal.py ./result/bin/nvim
+```
+
+See [tests/README.md](tests/README.md) for the isolated test environment and coverage.
+
 ## Hacking
 
 This flake exposes a package at `packages.${system}.nvim-no-rc` that doesn't
@@ -73,18 +93,59 @@ were chosen instead.
 
 > `<leader>` is `<Space>`. Chord keys (e.g. `<C-h><C-a>`) are pressed sequentially.
 
-### File Explorer (mini.files)
+### File Explorer (nvim-tree)
+
+The explorer is docked on the left while editing local files. It stays hidden on
+the home screen, hides automatically below **120 columns or 30 rows**, and returns
+when the terminal grows again. This covers narrow/half-sized terminal panes
+without forcing them back to fullscreen. Terminals expose their character-grid
+size, not a portable fullscreen flag; the thresholds can be changed with
+`vim.g.explorer_min_columns` and `vim.g.explorer_min_lines` before setup.
+Manually hiding the explorer persists for the current Neovim tab page.
 
 | Key | Action |
 |-----|--------|
-| `<C-e>` | Toggle file explorer at current file |
-| `<leader>fe` | Open file explorer at cwd |
-| `l` | Navigate into directory / open file |
-| `h` | Go to parent directory |
-| `<CR>` | Apply filesystem changes (rename, delete, etc.) |
-| `<Esc>` / `q` | Close file explorer |
+| `<C-e>` / `<leader>fe` | Toggle the left explorer |
+| `<CR>` / `o` | Expand directory / open file |
+| `<BS>` | Close directory |
+| `a` / `r` / `d` | Create / rename / delete |
+| `H` | Toggle hidden files |
+| `g?` | Show explorer keybindings |
+| `q` | Hide the explorer |
+
+### File Tabs
+
+Open files appear as clickable tabs across the top, like VS Code. These are
+**buffer tabs**, not Neovim tab pages (which hold separate window layouts).
+
+| Key | Action |
+|-----|--------|
+| `<leader><S-Tab>` | Next file tab, wrapping around |
+| `<leader><Tab>` | Previous file tab, wrapping around |
+| `<leader>bd` | Close current file buffer |
+
+Press Space, then Shift+Tab for the requested shortcut.
+
+### Remote - SSH
+
+`<leader>ssh` (Space, then `s`, `s`, `h`) opens the Remote - SSH menu, with
+connection, recent projects, file history, terminal, disconnect, and SSH config
+actions. The plugin is
+[inhesrom/remote-ssh.nvim](https://github.com/inhesrom/remote-ssh.nvim): files are
+edited locally, with remote filesystem operations and remote language servers.
+Remote buffers use normal explicit saves; automatic remote saving is disabled.
+
+Choose **Connect to Remote Project...** and enter `my-server//home/user/project`
+or `user@host//home/user/project`. Use an SSH alias from `~/.ssh/config` for
+nonstandard ports, identity files, or jump hosts. Configure key/agent-based SSH
+access first. The local wrapper includes OpenSSH, rsync, Python, and coreutils;
+the remote host needs SSH, rsync, Python 3, standard Unix tools, and any language
+servers you want to use. No remote Neovim installation is required.
 
 ### File Explorer (oil.nvim)
+
+Opening a directory with `nvim .` or `:edit /path/to/directory` uses Oil as a
+full-width browser, including in narrow terminals.
 
 | Key | Action |
 |-----|--------|

@@ -49,6 +49,12 @@ M.setup = function()
   vim.lsp.config("tinymist", {
     offset_encoding = "utf-8",
   })
+  local julia = nixCats("bin.julia")
+  if julia and vim.lsp.config.julials then
+    local cmd = vim.deepcopy(vim.lsp.config.julials.cmd)
+    cmd[1] = julia
+    vim.lsp.config("julials", { cmd = cmd })
+  end
   vim.lsp.enable("nixd")
   vim.lsp.enable("marksman")
   vim.lsp.enable("tinymist")
@@ -64,6 +70,18 @@ M.setup = function()
   vim.lsp.enable("julials")
   vim.lsp.enable("svls")
   vim.lsp.enable("vhdl_ls")
+  vim.lsp.enable("jdtls")
+
+  -- vim.lsp.enable only re-checks open buffers after VimEnter, so a file
+  -- passed on the command line (whose FileType already fired) never attaches.
+  if vim.v.vim_did_enter == 0 then
+    vim.api.nvim_create_autocmd("VimEnter", {
+      once = true,
+      callback = function()
+        vim.cmd.doautoall("nvim.lsp.enable FileType")
+      end,
+    })
+  end
 end
 
 return M

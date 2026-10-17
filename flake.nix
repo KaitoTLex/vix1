@@ -14,6 +14,11 @@
       url = "github:epwalsh/pomo.nvim";
       flake = false;
     };
+
+    plugins-remote-ssh = {
+      url = "github:inhesrom/remote-ssh.nvim";
+      flake = false;
+    };
   };
   outputs =
     {
@@ -29,28 +34,19 @@
       extra_pkg_config = {
         allowUnfree = true;
       };
-      inherit
-        (forEachSystem (
-          system:
-          let
-            dependencyOverlays = (import ./nix/overlays.nix) ++ [
-              # This overlay grabs all the inputs named in the format
-              # `plugins-<pluginName>`
-              # Once we add this overlay to our nixpkgs, we are able to
-              # use `pkgs.neovimPlugins`, which is a set of our plugins.
-              (utils.standardPluginOverlay inputs)
-              # add any flake overlays here.
-            ];
-          in
-          # these overlays will be wrapped with ${system}
-          # and we will call the same utils.eachSystem function
-          # later on to access them.
-          {
-            inherit dependencyOverlays;
-          }
-        ))
-        dependencyOverlays
-        ;
+      # pinned to 1.12: SymbolServer.jl (used by LanguageServer.jl) breaks on 1.13
+      # (KeyError :_apply). -bin: source builds fail on darwin (1.13: OpenBLAS tests,
+      # 1.12: withPackages writes to $HOME in the sandbox)
+      juliaWithLS =
+        pkgs:
+        pkgs.julia_112-bin.withPackages [
+          "LanguageServer"
+          "StaticLint"
+          "SymbolServer"
+        ];
+      dependencyOverlays = (import ./nix/overlays.nix) ++ [
+        (utils.standardPluginOverlay inputs)
+      ];
       # see :help nixCats.flake.outputs.categories
       # and
       # :help nixCats.flake.outputs.categoryDefinitions.scheme
@@ -76,6 +72,9 @@
               tree-sitter
               fd
               opencode
+              openssh
+              rsync
+              coreutils
 
               # lsps (minimal because should be provided per-project by nix)
               nixd
@@ -90,11 +89,7 @@
               coursier
               clang
               jdt-language-server
-              (julia.withPackages [
-                "LanguageServer"
-                "StaticLint"
-                "SymbolServer"
-              ])
+              (juliaWithLS pkgs)
               vhdl-ls
               svls
               svelte-language-server
@@ -173,10 +168,11 @@
           # plugins which are installed, but not loaded, and will be handled by
           # lz.n (not necessarily lazy loaded)
           optionalPlugins = {
-            # gitPlugins = with pkgs.neovimPlugins; [
-            #   blink-ripgrep
-            #   pomo-nvim
-            # ];
+            gitPlugins = with pkgs.neovimPlugins; [
+              blink-ripgrep
+              pomo-nvim
+              remote-ssh
+            ];
             general = with pkgs.vimPlugins; [
               # orgmode
               verilog_systemverilog-vim
@@ -192,16 +188,16 @@
               toggleterm-nvim
               trouble-nvim
               lualine-nvim
+              bufferline-nvim
+              nvim-tree-lua
               mini-ai
               mini-hipatterns
               mini-surround
               mini-starter
-              mini-files
               cellular-automaton-nvim
               indent-blankline-nvim
               fidget-nvim
               mini-bufremove
-              nvim-java
               neogit
               gitsigns-nvim
               barbecue-nvim
@@ -259,6 +255,8 @@
               bin = {
                 websocat = "${pkgs.websocat}/bin/websocat";
                 tinymist = "${pkgs.tinymist}/bin/tinymist";
+                # julials must use the julia that has LanguageServer, not whatever is first on PATH
+                julia = "${juliaWithLS pkgs}/bin/julia";
               };
               nixdExtras = {
                 nixpkgs = inputs.nixpkgs.outPath;
@@ -276,6 +274,7 @@
             };
             categories = {
               general = true;
+              gitPlugins = true;
               nixdExtras = {
                 nixpkgs = inputs.nixpkgs.outPath;
                 flake-path = inputs.self.outPath;
@@ -299,9 +298,24 @@
         } categoryDefinitions packageDefinitions;
         defaultPackage = nixCatsBuilder defaultPackageName;
         pkgs = import nixpkgs { inherit system; };
+        fullscreenLauncher = pkgs.writeShellApplication {
+          name = "nvim-fullscreen";
+          text = ''
+            exec ${pkgs.kitty}/bin/kitty --start-as fullscreen --class viminal2 \
+              ${defaultPackage}/bin/nvim "$@"
+          '';
+        };
       in
       {
-        packages = utils.mkAllWithDefault defaultPackage;
+        packages = utils.mkAllWithDefault defaultPackage // {
+          fullscreen = fullscreenLauncher;
+        };
+
+        apps.fullscreen = {
+          type = "app";
+          program = "${fullscreenLauncher}/bin/nvim-fullscreen";
+          meta.description = "Open Neovim in a fullscreen Kitty window";
+        };
 
         devShells = {
           default = pkgs.mkShell {

@@ -5,6 +5,12 @@ M.dark = "kanagawa-wave"
 M.light = "kanagawa-lotus"
 
 local function detect()
+  -- 0. macOS: AppleInterfaceStyle is only set (to "Dark") in dark mode
+  if vim.fn.has("mac") == 1 then
+    local style = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null")
+    return style:match("Dark") and "dark" or "light"
+  end
+
   -- 1. Stylix palette.json: base00 luminance is the most reliable signal here
   --    (portal returns uint32 0 / "default" when Stylix doesn't set an explicit preference)
   local home = os.getenv("HOME") or ""
@@ -83,8 +89,12 @@ end
 
 M.setup = function()
   apply(detect())
-  watch_portal()
-  watch_dconf()
+  if vim.fn.executable("dbus-monitor") == 1 then
+    watch_portal()
+  end
+  if vim.fn.executable("dconf") == 1 then
+    watch_dconf()
+  end
 end
 
 return M

@@ -13,31 +13,22 @@ return {
   require("plugins.trouble"),
   require("plugins.render-markdown"),
   require("plugins.toggleterm"),
-  require("plugins.mini-files"),
+  require("plugins.explorer"),
+  require("plugins.bufferline"),
+  require("plugins.remote-ssh"),
   require("plugins.neogit"),
   require("plugins.obsidian"),
   require("plugins.slop"),
   require("plugins.starter"),
-  { "vim-wakatime" },
-  { "vim-sleuth" },
   {
-    "nvim-java",
-    ft = "java",
-    after = function()
-      local jdtls_root = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.exepath("jdtls")), ":h:h") .. "/share/java/jdtls"
-      local jdk_root = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.exepath("java")), ":h:h")
-
-      require("java").setup({
-        jdtls = { path = jdtls_root, auto_install = false },
-        lombok = { enable = false },
-        java_test = { enable = false },
-        java_debug_adapter = { enable = false },
-        spring_boot_tools = { enable = false },
-        jdk = { path = jdk_root, auto_install = false },
-      })
-      vim.lsp.enable("jdtls")
+    "vim-wakatime",
+    -- without a key, every heartbeat raises a blocking "Invalid API Key" prompt
+    enabled = function()
+      local cfg = (vim.env.WAKATIME_HOME or vim.env.HOME) .. "/.wakatime.cfg"
+      return vim.env.WAKATIME_API_KEY ~= nil or vim.uv.fs_stat(cfg) ~= nil
     end,
   },
+  { "vim-sleuth" },
   {
     "nvim-lspconfig",
     event = "BufEnter",
@@ -135,6 +126,7 @@ return {
           filetypes = {
             "help",
             "ministarter",
+            "NvimTree",
             "Trouble",
             "trouble",
             "toggleterm",

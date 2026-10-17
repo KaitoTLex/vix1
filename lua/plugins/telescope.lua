@@ -18,7 +18,7 @@ return {
       function()
         local builtin = require("telescope.builtin")
         local is_git = vim.fn.finddir(".git", vim.fn.getcwd() .. ";")
-        if is_git then
+        if is_git ~= "" then
           builtin.git_files()
         else
           builtin.find_files()

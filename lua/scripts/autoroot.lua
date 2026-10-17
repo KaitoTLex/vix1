@@ -10,7 +10,7 @@ M.setup = function()
   local set_root = function()
     -- Get directory path to start search from
     local path = vim.api.nvim_buf_get_name(0)
-    if path == "" then
+    if vim.bo.buftype ~= "" or path == "" or path:match("^%w[%w+.-]*://") then
       return
     end
     path = vim.fs.dirname(path)

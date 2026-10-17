@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 if os.getenv("TERM") == "xterm-kitty" then
   require("scripts.chameleon").setup()
   require("scripts.kitty-padding").setup()
@@ -14,6 +17,9 @@ vim.opt.number = true
 
 -- Global statusline
 vim.opt.laststatus = 3
+vim.opt.showtabline = 2
+vim.opt.termguicolors = true
+vim.opt.mouse = "a"
 -- Persistent undos across session
 vim.opt.undofile = true
 
@@ -63,7 +69,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- silence the hover 'no information available' notification
-local hover_handler = vim.lsp.handlers.hover
+local hover_handler = vim.lsp.handlers["textDocument/hover"]
 vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
   return hover_handler(err, result, ctx, vim.tbl_extend("force", config or {}, { silent = true }))
 end

@@ -1,6 +1,7 @@
 -- we still use oil.nvim for more complex filesystem manipulations
 return {
   "oil.nvim",
+  lazy = false,
   cmd = "Oil",
   keys = {
     {
@@ -24,7 +25,8 @@ return {
         "size",
         "icon",
       },
-      default_file_explorer = false,
+      default_file_explorer = true,
+      buf_options = { undofile = false },
       use_default_keymaps = false,
       keymaps = {
         ["J"] = "actions.parent",
