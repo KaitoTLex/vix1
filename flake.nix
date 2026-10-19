@@ -37,9 +37,14 @@
       # pinned to 1.12: SymbolServer.jl (used by LanguageServer.jl) breaks on 1.13
       # (KeyError :_apply). -bin: source builds fail on darwin (1.13: OpenBLAS tests,
       # 1.12: withPackages writes to $HOME in the sandbox)
+      # installCheck runs julia's full test suite, which segfaults in stress.jl on some
+      # kernels; withPackages captures the unwrapped julia, so re-point it at ours
       juliaWithLS =
         pkgs:
-        pkgs.julia_112-bin.withPackages [
+        let
+          julia = pkgs.julia_112-bin.overrideAttrs { doInstallCheck = false; };
+        in
+        (pkgs.julia_112-bin.withPackages.override { inherit julia; }) [
           "LanguageServer"
           "StaticLint"
           "SymbolServer"
