@@ -135,10 +135,13 @@ actions. The plugin is
 edited locally, with remote filesystem operations and remote language servers.
 Remote buffers use normal explicit saves; automatic remote saving is disabled.
 
-Choose **Connect to Remote Project...** and enter `my-server//home/user/project`
-or `user@host//home/user/project`. Use an SSH alias from `~/.ssh/config` for
-nonstandard ports, identity files, or jump hosts. Configure key/agent-based SSH
-access first. The local wrapper includes OpenSSH, rsync, Python, and coreutils;
+Choose **Connect to Remote Project...** and enter `my-server//home/user/project`,
+`user@host//~/project`, or `user@host//project` (relative to the remote home).
+Use an SSH alias from `~/.ssh/config` for nonstandard ports, identity files, or
+jump hosts. The plugin's background ssh/scp jobs cannot prompt, so the menu first
+checks the login non-interactively; if a host key must be accepted or a password
+or passphrase is needed, it shows ssh's error and opens an interactive `ssh`
+terminal to finish once. Key passphrases should be loaded with `ssh-add`. The local wrapper includes OpenSSH, rsync, Python, and coreutils;
 the remote host needs SSH, rsync, Python 3, standard Unix tools, and any language
 servers you want to use. No remote Neovim installation is required.
 

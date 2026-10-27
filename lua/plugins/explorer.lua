@@ -24,6 +24,14 @@ return {
         api.map.on_attach.default(buf)
         vim.keymap.set("n", "<C-e>", toggle, { buffer = buf, desc = "Toggle explorer" })
         vim.keymap.set("n", "q", toggle, { buffer = buf, desc = "Close explorer" })
+        vim.keymap.set("n", "L", function()
+          local node = api.tree.get_node_under_cursor()
+          if node and node.type == "directory" then
+            api.tree.change_root_to_node(node)
+          else
+            api.node.open.edit()
+          end
+        end, { buffer = buf, desc = "Enter folder" })
       end,
     })
 
