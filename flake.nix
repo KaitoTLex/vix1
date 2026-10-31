@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    # pinned by rev so `nix flake update` can't move opencode (1.19.0) and
+    # opencode.nvim (1.0.2): bump them together by editing this rev
+    nixpkgs-opencode.url = "github:nixos/nixpkgs/f20cd90e28fe0403873f473b29e42662cd86e8c4";
 
     plugins-blink-ripgrep = {
       url = "github:mikavilpas/blink-ripgrep.nvim";
@@ -49,6 +52,44 @@
           "StaticLint"
           "SymbolServer"
         ];
+      opencodePkgs = pkgs: inputs.nixpkgs-opencode.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+      # merged over ~/.config/opencode by OPENCODE_CONFIG, so global settings still apply.
+      # kaoshung's API has no auth and stays on its loopback: reach it through
+      # kaoshung-llm-tunnel.service (127.0.0.1:8090), never a LAN address
+      opencodeConfig =
+        pkgs:
+        pkgs.writeText "opencode.json" (
+          builtins.toJSON {
+            "$schema" = "https://opencode.ai/config.json";
+            provider.kaoshung = {
+              npm = "@ai-sdk/openai-compatible";
+              name = "kaoshung";
+              options = {
+                baseURL = "http://127.0.0.1:8090/v1";
+                # nothing streams until a cold prompt prefills, up to 90 s at a full window
+                timeout = 1800000;
+                chunkTimeout = 600000;
+              };
+              models."Qwen3.8-Flash-Next-Uncensored-exl3-5bpw" = {
+                name = "Qwen3.8 Flash Next (kaoshung)";
+                tool_call = true;
+                reasoning = true;
+                attachment = true;
+                modalities = {
+                  input = [
+                    "text"
+                    "image"
+                  ];
+                  output = [ "text" ];
+                };
+                limit = {
+                  context = 131072;
+                  output = 32768;
+                };
+              };
+            };
+          }
+        );
       dependencyOverlays = (import ./nix/overlays.nix) ++ [
         (utils.standardPluginOverlay inputs)
       ];
@@ -76,7 +117,7 @@
               python313
               tree-sitter
               fd
-              opencode
+              (opencodePkgs pkgs).opencode
               openssh
               rsync
               coreutils
@@ -121,6 +162,12 @@
 
               libnotify
             ];
+          };
+
+          environmentVariables = {
+            general = {
+              OPENCODE_CONFIG = "${opencodeConfig pkgs}";
+            };
           };
 
           # install lz.n and treesitter grammars
@@ -230,7 +277,7 @@
               rose-pine
               oxocarbon-nvim
               kanagawa-nvim
-              opencode-nvim
+              (opencodePkgs pkgs).vimPlugins.opencode-nvim
             ];
           };
 
